@@ -12,19 +12,30 @@ export interface Category {
 }
 
 export interface Location {
+  id: string;
   location: string;
   images: string;
+}
+export interface User {
+  id: string;
+  email: string;
+  username: string;
+  password: string;
+  image?: string | null;
+  isLogin?: boolean | null;
+  createdAt?: Date | null;
+  updatedAt?: Date | null;
 }
 
 export interface Cabin {
   id: string;
-  location: string[];
+  location: string;
   name: string;
   rate: number;
   room: number;
   bed: number;
   price: number;
-  images: string[];
+  images: string;
 }
 export interface Link {
   id: number;
@@ -36,4 +47,11 @@ export interface Blog {
   title: string;
   subtitle: string;
   image: string;
+}
+
+export interface sidebarItem {
+  id: number;
+  title: string;
+  Icon: IconType;
+  path: string;
 }

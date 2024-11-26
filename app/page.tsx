@@ -20,9 +20,9 @@ export default function Home() {
         <MobileHero />
       </div>
       <Categories />
-      <FavLocations />
       <CitiesList />
       <CabinList />
+      <FavLocations />
       <Offers />
       <InfoSection />
       <Blogs />

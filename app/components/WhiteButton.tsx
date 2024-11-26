@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface Props {
   text: string;
@@ -44,14 +44,21 @@ const WhiteButton = ({
   if (link) {
     if (haveMotion) {
       return (
-        <motion.div
-          initial={{ backgroundColor: "#fff", color: "#000", scale: 1 }}
-          whileTap={{ backgroundColor: "#ffa500", color: "#fff", scale: 1.07 }}
-          whileHover={{ backgroundColor: "#ffa500", color: "#fff", scale: 1 }}
-          transition={{ duration: 0.2 }}
-          className={commonClassNames}>
-          <Link href={path ? path : "/"}>{buttonContent}</Link>
-        </motion.div>
+        <AnimatePresence>
+          <motion.div
+            initial={{ backgroundColor: "#fff", color: "#000", scale: 1 }}
+            whileTap={{
+              backgroundColor: "#ffa500",
+              color: "#fff",
+              scale: 1.07,
+            }}
+            whileHover={{ backgroundColor: "#ffa500", color: "#fff", scale: 1 }}
+            exit={{ backgroundColor: "#fff", color: "#000", scale: 1 }}
+            transition={{ duration: 0.2 }}
+            className={commonClassNames}>
+            <Link href={path ? path : "/"}>{buttonContent}</Link>
+          </motion.div>
+        </AnimatePresence>
       );
     }
 

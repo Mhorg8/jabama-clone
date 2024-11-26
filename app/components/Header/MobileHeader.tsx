@@ -3,9 +3,12 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { IoLogInOutline } from "react-icons/io5";
 import MobileSearchCity from "./MobileSearchCity";
+import { useSession } from "next-auth/react";
+import UserActionDp from "./UserActionDp";
 
 const MobileHeader = () => {
   const [scrollHeight, setScrollHeight] = useState<number>(0);
+  const { data: session } = useSession();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,10 +37,16 @@ const MobileHeader = () => {
         </div>
 
         <div className="flex items-center gap-x-1.5">
-          <Link href="/" className="text-sm ">
-            Sign in / Sign up
-          </Link>
-          <IoLogInOutline size={18} />
+          {session ? (
+            <UserActionDp />
+          ) : (
+            <>
+              <Link href={"/sign-up"} className="text-sm ">
+                Sign in / Sign up
+              </Link>
+              <IoLogInOutline size={18} />
+            </>
+          )}
         </div>
       </div>
       <div className="mt-5">

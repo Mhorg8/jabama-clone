@@ -4,12 +4,15 @@ import {
   Category,
   Link,
   Location,
+  sidebarItem,
   slideImage,
 } from "../types/types";
 import { MdOutlineVilla } from "react-icons/md";
 import { BsHouseDoor } from "react-icons/bs";
 import { GiPalmTree, GiPartyPopper } from "react-icons/gi";
-import { BsBuildings, BsTags, BsTree } from "react-icons/bs";
+import { BsBuildings, BsTags, BsTree, BsJournals } from "react-icons/bs";
+import { IoPeopleCircleOutline } from "react-icons/io5";
+import { GrMapLocation } from "react-icons/gr";
 
 export const sliderImage: slideImage[] = [
   {
@@ -201,4 +204,12 @@ export const blogs: Blog[] = [
     subtitle: "Experience life in the cities and villages of Iran",
     image: "/localLife.jpg",
   },
+];
+
+export const sidebarItems: sidebarItem[] = [
+  { id: 1, title: "cites", Icon: BsBuildings, path: "cities" },
+  { id: 2, title: "cabins", Icon: BsHouseDoor, path: "cabins" },
+  { id: 3, title: "blogs", Icon: BsJournals, path: "blogs" },
+  { id: 4, title: "locations", Icon: GrMapLocation, path: "locations" },
+  { id: 5, title: "users", Icon: IoPeopleCircleOutline, path: "users" },
 ];

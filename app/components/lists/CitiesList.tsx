@@ -1,8 +1,10 @@
 import ProductSlider from "../ProductSlider";
 import SectionHeading from "../SectionHeading";
-import { locations } from "../../constant";
 import WhiteButton from "../WhiteButton";
-const CitiesList = () => {
+import { getCities } from "@/app/actions";
+const CitiesList = async () => {
+  const cities = await getCities();
+
   return (
     <div className="container mt-10 w-full flex flex-col">
       <div className="flex items-center justify-between">
@@ -18,7 +20,7 @@ const CitiesList = () => {
           />
         </div>
       </div>
-      <ProductSlider delay={3000} content={locations} />
+      <ProductSlider delay={3000} content={cities} />
 
       <WhiteButton
         text="Show More "

@@ -11,7 +11,6 @@ const Hero = () => {
         sizes="fill"
         className="object-cover aspect-auto"
       />
-      <div className="h-[200dvh]"></div>
     </div>
   );
 };

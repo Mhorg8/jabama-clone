@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header/Header";
+import StoreProvider from "./StoreProvider";
 import Footer from "./components/footer/Footer";
+
+import { SessionProvider } from "next-auth/react";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -19,9 +22,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${outfit.className} antialiased`}>
-        <Header />
-        {children}
-        <Footer />
+        <StoreProvider>
+          <SessionProvider>
+            <Header />
+            {children}
+            <Footer />
+          </SessionProvider>
+        </StoreProvider>
       </body>
     </html>
   );

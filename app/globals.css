@@ -9,4 +9,25 @@
   .white__button {
     @apply border border-neutral-900 w-full rounded-lg text-center py-1 cursor-pointer;
   }
+  .form {
+    @apply w-[350px] md:w-[400px] h-fit flex flex-col gap-4 bg-gray-200 p-4 rounded-xl;
+  }
+  .input {
+    @apply bg-neutral-200/80  w-full pl-2 py-1.5 rounded-md focus:outline-orangeColor;
+  }
+  .login__button {
+    @apply flex-1 py-2 flex items-center justify-between px-2 bg-white border border-b-4 rounded-lg hover:text-white transition-all duration-200 border-neutral-400 border-b-orangeColor cursor-pointer hover:bg-orangeColor hover:border-b-black;
+  }
+  .slider__item {
+    @apply flex items-center justify-center md:justify-start  w-full gap-x-2 px-2 py-3 cursor-pointer;
+  }
+  .dashboard__item {
+    @apply col-span-6 md:col-span-4 lg:col-span-2 h-[250px] bg-white rounded-xl p-2 shadow-md hover:shadow-lg transition duration-200 cursor-pointer;
+  }
+  .dropdown__item {
+    @apply flex items-center justify-between hover:text-orangeColor hover:scale-105;
+  }
+  .dropdown-active {
+    @apply bg-neutral-200 p-2 rounded-lg w-[130px] hidden  absolute top-4 gap-2 right-0;
+  }
 }

@@ -1,11 +1,11 @@
 import NextAuth from "next-auth";
-import credentialsProvider from "next-auth/providers/credentials";
+import CredentialsProvider from "next-auth/providers/credentials";
 import client from "./app/lib/prisma";
 import bcrypt from "bcryptjs";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
-    credentialsProvider({
+    CredentialsProvider({
       name: "credentials",
       credentials: {
         email: {
@@ -15,7 +15,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         },
         password: {
           label: "Password",
-          type: "Password",
+          type: "password",
           placeholder: "********",
         },
       },
@@ -26,40 +26,36 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           password: string;
         };
 
-        if (!password || !email) {
+        if (!email || !password) {
           throw new Error("Please fill all required fields");
         }
 
         const user = await client.user.findUnique({
-          where: {
-            email: email,
-          },
+          where: { email },
         });
 
         if (!user) {
           throw new Error("User not found");
         }
 
-        const isCurrentPassword = await bcrypt.compare(password, user.password);
+        const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
-        if (!isCurrentPassword) {
+        if (!isPasswordCorrect) {
           throw new Error("Password is not correct");
         }
 
         return {
           id: user.id,
           email: user.email,
-          name: user.username,
-          password: user.password,
-          isLogin: user.isLogin,
+          username: user.username,
+          image: user.image,
           createdAt: user.createdAt,
           updatedAt: user.updatedAt,
+          password: user.password,
         };
       },
     }),
   ],
-
-  pages: {},
   session: {
     strategy: "jwt",
   },
@@ -69,15 +65,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         token.user = {
           id: user.id,
           email: user.email,
-          username: user.name,
+          name: user.username,
+          image: user.image,
         };
       }
       return token;
     },
     async session({ session, token }) {
-      if (token.user) {
-        // session.user = token.user;
-      }
+      session.user = token.user;
       return session;
     },
   },
